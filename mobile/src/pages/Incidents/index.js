@@ -26,19 +26,20 @@ export default function Incidents() {
       return;
     }
     setLoading(true);
-
-    const response = await api.get('incidents', {
-      params: { page }
-    });
+   
+      const response = await api.get('incidents', {
+        params: { page }
+     });
+      console.log('dados : ', response.data);
     setIncidents([...incidents, ...response.data]);
-    setTotal(response.headers['X-total-count']);
+    setTotal(response.headers['x-total-count']);
     setPage(page + 1);
     setLoading(false);
   }
 
   useEffect(() => {
     loadIncidents();
-  }, [])
+  }, []);
 
   return (
 
@@ -55,7 +56,8 @@ export default function Incidents() {
       <FlatList style={styles.incidentList}
         onEndReached={loadIncidents}
         onEndReachedThreshold={0.2}
-        data={incidents}
+        data={ incidents}
+        // keyExtractor={(incident) => incident.id}
         keyExtractor={incident => String(incident.id)}
         showsVerticalScrollIndicator={false}
         renderItem={({ item: incident }) => (
@@ -75,7 +77,7 @@ export default function Incidents() {
                 .format(incident.value)}</Text>
             <TouchableOpacity style={styles.detailsButton} onPress={() => navigateToDetail(incident)}>
               <Text style={styles.detailsButtonText}>Ver mais detalhes</Text>
-              <Feather name="arrow-left" size={16} color="#E02041" />
+              <Feather name="arrow-right" size={16} color="#E02041" />
 
             </TouchableOpacity>
           </View>

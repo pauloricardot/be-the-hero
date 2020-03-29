@@ -14,7 +14,7 @@ export default function Detail() {
   const incident = route.params.incident;
 
   const subject = `Herói do caso: ${incident.title}`;
-  const message = `Olá ${incident.name}, estou entrando em contato pois gostaria de ajudar no caso da "${incident.title}" com o valor de R$ ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(incident.value)}}}`;
+  const message = `Olá ${incident.name}, estou entrando em contato pois gostaria de ajudar no caso da "${incident.title}" com o valor de ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(incident.value)}`;
   function navigationBack() {
     navigation.goBack()
   }
@@ -36,7 +36,7 @@ export default function Detail() {
         <Image source={logoImg} alt="Be The Hero" />
 
         <TouchableOpacity onPress={navigationBack}  >
-          <Feather name="arrow-right" size={28} color="#E02041" />
+          <Feather name="arrow-left" size={28} color="#E02041" />
         </TouchableOpacity>
       </View>
 
@@ -52,7 +52,7 @@ export default function Detail() {
           style: 'currency',
           currency: 'BRL'
         })
-          .format(incident.value)}}</Text>
+          .format(incident.value)}</Text>
       </View>
       <View style={styles.contactBox}>
         <Text style={styles.heroTitle}>Salve o dia!</Text>
